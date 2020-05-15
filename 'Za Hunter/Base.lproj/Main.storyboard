@@ -38,21 +38,87 @@
             </objects>
             <point key="canvasLocation" x="791" y="86"/>
         </scene>
-        <!--View Controller-->
+        <!--Location Details View Controller-->
         <scene sceneID="7H4-kL-G0G">
             <objects>
-                <viewController id="RiR-6c-Wmk" sceneMemberID="viewController">
+                <viewController id="RiR-6c-Wmk" customClass="LocationDetailsViewController" customModule="_Za_Hunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EDY-RF-79z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDt-JR-NVW">
+                                <rect key="frame" x="100" y="247" width="200" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="6GT-nN-SJL"/>
+                                    <constraint firstAttribute="height" constant="150" id="wCd-N7-KCk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gug-Gw-Vgd">
+                                <rect key="frame" x="100" y="476" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HZt-EO-CCK"/>
+                                    <constraint firstAttribute="width" constant="200" id="f8S-sA-ATK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDI-bK-ga4">
+                                <rect key="frame" x="134" y="659" width="85" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="iOQ-No-yxi"/>
+                                    <constraint firstAttribute="height" constant="30" id="jv2-rv-UUQ"/>
+                                </constraints>
+                                <state key="normal" title="Directions"/>
+                                <connections>
+                                    <action selector="onDirectionsButtonTapped:" destination="RiR-6c-Wmk" eventType="touchUpInside" id="hZ1-vW-djQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BP-LC-WgQ">
+                                <rect key="frame" x="148" y="747" width="56" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Website"/>
+                                <connections>
+                                    <action selector="onWebsiteButtonTapped:" destination="RiR-6c-Wmk" eventType="touchUpInside" id="YjZ-O9-bO4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqZ-yH-GiW">
+                                <rect key="frame" x="100" y="173" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="doR-qO-cm9"/>
+                                    <constraint firstAttribute="width" constant="200" id="hce-Dt-aeZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="opA-ZK-dww" firstAttribute="bottom" secondItem="Gug-Gw-Vgd" secondAttribute="bottom" constant="336" id="77Y-31-VRV"/>
+                            <constraint firstItem="Gug-Gw-Vgd" firstAttribute="leading" secondItem="YqZ-yH-GiW" secondAttribute="leading" id="O1E-u6-8eB"/>
+                            <constraint firstItem="BDI-bK-ga4" firstAttribute="centerX" secondItem="EDY-RF-79z" secondAttribute="centerX" id="SP7-T2-8D2"/>
+                            <constraint firstItem="BDI-bK-ga4" firstAttribute="leading" secondItem="opA-ZK-dww" secondAttribute="leading" constant="134" id="UAX-xr-goR"/>
+                            <constraint firstItem="Gug-Gw-Vgd" firstAttribute="leading" secondItem="opA-ZK-dww" secondAttribute="leading" constant="100" id="gXc-Rc-kCo"/>
+                            <constraint firstItem="opA-ZK-dww" firstAttribute="bottom" secondItem="BDI-bK-ga4" secondAttribute="bottom" constant="173" id="jVK-19-mZC"/>
+                            <constraint firstItem="BDI-bK-ga4" firstAttribute="centerY" secondItem="EDY-RF-79z" secondAttribute="centerY" id="jlY-A5-5z3"/>
+                            <constraint firstItem="Gug-Gw-Vgd" firstAttribute="leading" secondItem="KDt-JR-NVW" secondAttribute="leading" id="vx1-vD-nxp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="opA-ZK-dww"/>
                     </view>
                     <navigationItem key="navigationItem" id="Y8E-AM-CZ3"/>
+                    <connections>
+                        <outlet property="addressLabel" destination="KDt-JR-NVW" id="Rph-i1-nJr"/>
+                        <outlet property="nameLabel" destination="YqZ-yH-GiW" id="wVb-J8-aQy"/>
+                        <outlet property="phoneLabel" destination="Gug-Gw-Vgd" id="dZA-BO-i3r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDl-m6-ISu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="94"/>
+            <point key="canvasLocation" x="1592.753623188406" y="93.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bxF-QZ-gzP">

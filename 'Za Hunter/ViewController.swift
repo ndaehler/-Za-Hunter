@@ -15,40 +15,46 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var region = MKCoordinateRegion()
+    var mapItems = [MKMapItem]()
+    var selectedMapItem = MKMapItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestWhenInUseAuthorization()
              mapView.showsUserLocation = true
+       locationManager.startUpdatingLocation()
         locationManager.delegate = self
-        locationManager.startUpdatingLocation()
         mapView.delegate = self
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first!
         let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
-        region = MKCoordinateRegion(center: center, span: span)
+        let span = MKCoordinateSpanMake(0.025, 0.025)
+        region = MKCoordinateRegionMake(center, span)
         mapView.setRegion(region, animated: true)
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-         let request = MKLocalSearch.Request()
+         let request = MKLocalSearchRequest()
             request.naturalLanguageQuery = "pizza"
             request.region = region
             let search = MKLocalSearch(request: request)
             search.start { (response, error) in
                if let response = response {
                   for mapItem in response.mapItems {
+                    self.mapItems.append(mapItem)
                      let annotation = MKPointAnnotation()
                     annotation.coordinate = mapItem.placemark.coordinate
                     annotation.title = mapItem.name
                     self.mapView.addAnnotation(annotation)
+                   
                   }
     }
-}
-
+        }
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotation? {
         if annotation is MKUserLocation {
@@ -62,10 +68,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         } else {
             pinView?.annotation = annotation
         }
-        return annotation
+        return pinView
         }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        for mapItem in mapItems {
+                         if mapItem.placemark.coordinate.latitude == view.annotation?.coordinate.latitude &&
+                              mapItem.placemark.coordinate.longitude == view.annotation?.coordinate.longitude {
+                                 selectedMapItem = mapItem
+                         }
+                     }
+    }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         performSegue(withIdentifier: "ShowLocationDetailsSegue", sender: nil)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? LocationDetailsViewController {
+            destination.selectedMapItem = selectedMapItem
+        }
+    }
+    
         }
 
